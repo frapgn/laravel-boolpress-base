@@ -58,9 +58,10 @@ class PostController extends Controller
      */
     public function show($id)
     {
-        $post = Post::where('id', $id)->first();
+        $post = Post::find($id);
+            // dd($post);
 
-        return view('posts.show', compact('id'));
+        return view('posts.show', compact('id', 'post'));
 
 
     }
