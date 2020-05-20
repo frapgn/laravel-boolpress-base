@@ -17,9 +17,10 @@ class CreatePostsTable extends Migration
             $table->id();
             $table->text('url_image');
             $table->string('title', 150);
+            $table->text('slug')->unique();
             $table->text('paragraph');
-            $table->string('author', 80);
-            $table->boolean('published');
+            $table->string('author', 80)->default('NOME_SITO_WEB');
+            $table->boolean('is_published');
             $table->timestamps();
         });
     }
