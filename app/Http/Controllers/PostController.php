@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Post;
+use Illuminate\Support\Str;
 
 class PostController extends Controller
 {
@@ -36,7 +37,17 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = $request->all();
+        $data['slug'] = Str::slug($data['title'] , '-') . '-' . rand(1,100);
+
+        $post = new Post;
+        $post->fill($data);
+        $saved = $post->save();
+        if(!$saved) {
+            dd('errore di salvataggio');
+        }
+
+        return redirect()->route('posts.show', $post->id);
     }
 
     /**
@@ -47,7 +58,11 @@ class PostController extends Controller
      */
     public function show($id)
     {
-        //
+        $post = Post::where('id', $id)->first();
+
+        return view('posts.show', compact('id'));
+
+
     }
 
     /**

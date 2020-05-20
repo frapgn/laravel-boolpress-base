@@ -6,14 +6,11 @@
     <title>laravel-boolpress-base</title>
 </head>
 <body>
-    <h1>Laravel boolpress Base</h1>
+    <h1>Laravel Boolpress Base</h1>
     @foreach ($posts as $post)
-        <article>
-            <h2>{{$post->title}}</h2>
-            <small>{!!'<strong>' . $post->author . '</strong>'!!}</small>
-            <small>{{$post->created_at}}</small>
-            <p>{{$post->paragraph}}</p>
-        </article>
+        <div>
+            <h2><a href="{{route('posts.show', $post->id)}}">{{$post->title}}</a></h2>
+        </div>
     @endforeach
 </body>
 </html>
