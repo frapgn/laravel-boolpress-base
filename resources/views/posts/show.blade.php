@@ -1,3 +1,7 @@
+{{-- @php
+dd($post);
+@endphp --}}
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
