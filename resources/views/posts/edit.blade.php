@@ -9,7 +9,7 @@
 <body>
     <form class="create-post" action="{{route('posts.update', $post->id)}}" method="POST">
         @csrf
-        @method('PUT')
+        @method('PATCH')
         <div class="form-group">
             <label for="url_image">Url Image</label>
             <input type="text" class="form-control" name="url_image" value="{{$post->url_image}}">

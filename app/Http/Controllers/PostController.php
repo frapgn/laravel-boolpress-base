@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Post;
 use Illuminate\Support\Str;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Validator;
 
 class PostController extends Controller
 {
@@ -42,6 +43,20 @@ class PostController extends Controller
         $data['slug'] = Str::slug($data['title'] , '-') . '-' . rand(1,100);
         // dd($data);
 
+        $validator = Validator::make($data, [
+            'url' => 'url',
+            'title' => 'required|string|max:150',
+            'paragraph' => 'required',
+            'author' => 'string|max:80',
+            'is_published' => 'required|boolean'
+        ]);
+
+        if ($validator->fails()) {
+            return redirect()->route('posts.create')
+                ->withErrors($validator)
+                ->withInput();
+        }
+
         $post = new Post;
         $post->fill($data);
         $saved = $post->save();
@@ -49,7 +64,7 @@ class PostController extends Controller
             dd('errore di salvataggio');
         }
 
-        return redirect()->route('posts.show', $post->id);
+        return redirect()->route('posts.show', $post->slug);
     }
 
     /**
@@ -101,12 +116,26 @@ class PostController extends Controller
         }
 
         $data = $request->all();
+        // dd($data);
         $now = Carbon::now()->format('Y-m-d-H-i-s');
 
         $data['slug'] = Str::slug($data['title'], '-') . '-' . $now;
 
         if (empty($data['author'])) {
             unset($data['author']);
+        }
+
+        $validator = Validator::make($data, [
+            'url' => 'url',
+            'title' => 'string|max:150',
+            'author' => 'string|max:80',
+            'is_published' => 'boolean'
+        ]);
+
+        if ($validator->fails()) {
+            return redirect()->route('posts.create')
+                ->withErrors($validator)
+                ->withInput();
         }
 
         $post->fill($data);

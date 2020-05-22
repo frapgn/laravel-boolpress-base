@@ -12,7 +12,7 @@
         <div class="post-wrapper clearfix">
             <h2 class="float-left">{{$post->title}}</h2>
             <a class="btn btn-primary float-left" href="{{route('posts.show', $post->slug)}}">View</a>
-            <a class="btn btn-secondary float-left" href="{{route('posts.edit', $post->id)}}"><View>Edit</View></a>
+            <a class="btn btn-secondary float-left" href="{{route('posts.edit', $post)}}">Edit</a>
             <form class="" action="{{route('posts.destroy', $post->id)}}" method="post">
                 @method('DELETE')
                 @csrf
