@@ -12,8 +12,9 @@
         @method('POST')
         <div class="form-group">
             <label for="url_image">Url Image</label>
-            @php $rand_img = 'https://picsum.photos/300/200?random='; $rand_num = rand(1, 1000); @endphp
-            <input type="text" class="form-control" name="url_image" value="@php echo $rand_img . $rand_num; @endphp">
+            {{-- @php $rand_img = 'https://picsum.photos/300/200?random='; $rand_num = rand(1, 1000); @endphp --}}
+            {{-- <input type="text" class="form-control" name="url_image" value="@php echo $rand_img . $rand_num; @endphp"> --}}
+            <input type="text" class="form-control" name="url_image" value="{{old('url_image')}}">
             @error ('url_image')
                 <div class="alert alert-danger">{{$message}}</div>
             @enderror

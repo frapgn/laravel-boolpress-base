@@ -10959,16 +10959,31 @@ body .create-post .form-control {
   color: #f5f5f5;
 }
 
-.post-wrapper {
+.posts-container {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.posts-container .post-wrapper {
   padding: 10px;
   border-bottom: 1px dotted #f5f5f5;
+  flex: 1 1 33.3333%;
 }
 
-.post-wrapper h2 {
-  min-width: 200px;
+.posts-container .post-wrapper h2 {
+  font-size: 20px;
+  margin-bottom: 10px;
 }
 
-.post-wrapper .btn {
+.posts-container .post-wrapper img {
+  display: block;
+}
+
+.posts-container .post-wrapper .btns {
+  margin-top: 10px;
+}
+
+.posts-container .post-wrapper .btns .btn {
   margin-right: 10px;
 }
 
