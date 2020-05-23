@@ -43,10 +43,14 @@ class PostController extends Controller
         $data['slug'] = Str::slug($data['title'] , '-') . '-' . rand(1,100);
         // dd($data);
 
+        if (empty($data['author'])) {
+            unset($data['author']);
+        }
+
         $validator = Validator::make($data, [
-            'url' => 'url',
+            'url_image' => 'url|max:65535',
             'title' => 'required|string|max:150',
-            'paragraph' => 'required',
+            'paragraph' => 'required|max:65535',
             'author' => 'string|max:80',
             'is_published' => 'required|boolean'
         ]);
@@ -54,17 +58,19 @@ class PostController extends Controller
         if ($validator->fails()) {
             return redirect()->route('posts.create')
                 ->withErrors($validator)
-                ->withInput();
+                ->withInput()
+                // ->with('status', 'Messaggio')
+                ;
         }
 
         $post = new Post;
         $post->fill($data);
         $saved = $post->save();
         if(!$saved) {
-            dd('errore di salvataggio');
+            return redirect()->back()->with('post-not-published', 'Errore: articolo non pubblicato');
         }
 
-        return redirect()->route('posts.show', $post->slug);
+        return redirect()->route('posts.show', $post->slug)->with('post-published', 'Post pubblicato con successo');
     }
 
     /**
@@ -121,13 +127,26 @@ class PostController extends Controller
 
         $data['slug'] = Str::slug($data['title'], '-') . '-' . $now;
 
+        if (empty($data['url_image'])) {
+            unset($data['url_image']);
+        }
+
+        if (empty($data['title'])) {
+            unset($data['title']);
+        }
+
+        if (empty($data['paragraph'])) {
+            unset($data['paragraph']);
+        }
+
         if (empty($data['author'])) {
             unset($data['author']);
         }
 
         $validator = Validator::make($data, [
-            'url' => 'url',
+            'url_image' => 'url|max:65535',
             'title' => 'string|max:150',
+            'paragraph' => 'max:65535',
             'author' => 'string|max:80',
             'is_published' => 'boolean'
         ]);
@@ -135,7 +154,9 @@ class PostController extends Controller
         if ($validator->fails()) {
             return redirect()->route('posts.create')
                 ->withErrors($validator)
-                ->withInput();
+                ->withInput()
+                // ->with('status', 'Messaggio')
+                ;
         }
 
         $post->fill($data);
@@ -146,7 +167,7 @@ class PostController extends Controller
             // gestire l'errore
         }
 
-        return redirect()->route('posts.show', $post->slug);
+        return redirect()->route('posts.show', $post->slug)->with('post-edited', 'Post modificato con successo');;
     }
 
     /**
