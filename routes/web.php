@@ -15,10 +15,16 @@ use Illuminate\Support\Facades\Route;
 
 // Route::get('/', 'PostController@index')->name('posts');
 
-// GUEST
-Route::get('/home', 'HomeController@index')->name('home');
 
-// ADMIN
+// GUEST ------------------------------------------------------------------
+Route::get('/', 'HomeController@index')->name('home');
+
+// Posts
+Route::get('posts', 'PostController@index')->name('posts.index');
+Route::get('posts/{post}', 'PostController@show')->name('posts.show');
+
+
+// ADMIN ------------------------------------------------------------------
 Auth::routes();
 Route::prefix('admin')
     ->namespace('Admin')

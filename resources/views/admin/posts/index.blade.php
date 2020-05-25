@@ -1,11 +1,11 @@
-@extends('layouts.layout')
-@section('title')
+@extends('layouts.app')
+{{-- @section('title')
     Posts
-@endsection
+@endsection --}}
 
-@section('main')
+@section('content')
     <div class="container">
-        <h1>Laravel Boolpress Base</h1>
+        <h1>Manage Posts</h1>
         <div class="posts-container">
             @foreach ($posts as $post)
                 <div class="post-wrapper">

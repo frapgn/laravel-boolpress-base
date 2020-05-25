@@ -10933,3 +10933,57 @@ a.text-dark:focus {
   }
 }
 
+.posts-container {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.posts-container .post-wrapper {
+  padding: 10px;
+  border-bottom: 1px dotted #f5f5f5;
+  flex: 1 1 33.3333%;
+}
+
+.posts-container .post-wrapper h2 {
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+
+.posts-container .post-wrapper img {
+  display: block;
+}
+
+.posts-container .post-wrapper .btns {
+  margin-top: 10px;
+}
+
+.posts-container .post-wrapper .btns .btn {
+  margin-right: 10px;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+h2 {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: #222;
+  color: #f5f5f5;
+  padding: 30px;
+}
+
+body .create-post label {
+  font-weight: bold;
+}
+
+body .create-post .form-control {
+  background-color: grey;
+  color: #f5f5f5;
+}
+
