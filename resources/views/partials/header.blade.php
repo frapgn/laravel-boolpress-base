@@ -10,7 +10,7 @@
         <a class="nav-link" href="{{route('home')}}">Home</a>
       </li>
       <li class="nav-item ">
-        <a class="nav-link" href="{{route('posts.index')}}">Posts</a>
+        <a class="nav-link" href="{{route('admin.posts.index')}}">Posts</a>
       </li>
     </ul>
   </div>

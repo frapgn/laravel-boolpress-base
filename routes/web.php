@@ -14,9 +14,17 @@ use Illuminate\Support\Facades\Route;
 */
 
 // Route::get('/', 'PostController@index')->name('posts');
-// Route::get('/', 'HomeController@index')->name('index');
-Route::resource('posts', 'PostController');
 
-Auth::routes();
-
+// GUEST
 Route::get('/home', 'HomeController@index')->name('home');
+
+// ADMIN
+Auth::routes();
+Route::prefix('admin')
+    ->namespace('Admin')
+    ->name('admin.')
+    ->middleware('auth')
+    ->group(function () {
+        Route::get('home', 'AdminHomeController@index')->name('home');
+        Route::resource('posts', 'AdminPostController');
+    });

@@ -1,14 +1,15 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Post;
 use Illuminate\Support\Str;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Validator;
 
-class PostController extends Controller
+class AdminPostController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -18,7 +19,7 @@ class PostController extends Controller
     public function index()
     {
         $posts = Post::all();
-        return view('posts.index', compact('posts'));
+        return view('admin.posts.index', compact('posts'));
     }
 
     /**
@@ -28,7 +29,7 @@ class PostController extends Controller
      */
     public function create()
     {
-        return view('posts.create');
+        return view('admin.posts.create');
     }
 
     /**
@@ -56,7 +57,7 @@ class PostController extends Controller
         ]);
 
         if ($validator->fails()) {
-            return redirect()->route('posts.create')
+            return redirect()->route('admin.posts.create')
                 ->withErrors($validator)
                 ->withInput()
                 // ->with('status', 'Messaggio')
@@ -70,7 +71,7 @@ class PostController extends Controller
             return redirect()->back()->with('post-not-published', 'Errore: articolo non pubblicato');
         }
 
-        return redirect()->route('posts.show', $post->slug)->with('post-published', 'Post pubblicato con successo');
+        return redirect()->route('admin.posts.show', $post->slug)->with('post-published', 'Post pubblicato con successo');
     }
 
     /**
@@ -86,7 +87,7 @@ class PostController extends Controller
         $post = Post::where('slug', $slug)->first();
 
 
-        return view('posts.show', compact('post'));
+        return view('admin.posts.show', compact('post'));
 
 
     }
@@ -103,7 +104,7 @@ class PostController extends Controller
             abort('404');
         }
 
-        return view('posts.edit', compact('post'));
+        return view('admin.posts.edit', compact('post'));
     }
 
     /**
@@ -152,7 +153,7 @@ class PostController extends Controller
         ]);
 
         if ($validator->fails()) {
-            return redirect()->route('posts.create')
+            return redirect()->route('admin.posts.create')
                 ->withErrors($validator)
                 ->withInput()
                 // ->with('status', 'Messaggio')
@@ -167,7 +168,7 @@ class PostController extends Controller
             // gestire l'errore
         }
 
-        return redirect()->route('posts.show', $post->slug)->with('post-edited', 'Post modificato con successo');;
+        return redirect()->route('admin.posts.show', $post->slug)->with('post-edited', 'Post modificato con successo');;
     }
 
     /**
@@ -186,6 +187,6 @@ class PostController extends Controller
 
         $post->delete();
 
-        return redirect()->route('posts.index');
+        return redirect()->route('admin.posts.index');
     }
 }
