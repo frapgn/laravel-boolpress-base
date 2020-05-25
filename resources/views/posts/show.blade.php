@@ -1,16 +1,6 @@
-{{-- @php
-dd($post);
-@endphp --}}
+@extends('layouts.app')
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{$post->title}}</title>
-    <link rel="stylesheet" href="{{asset('css/app.css')}}">
-</head>
-<body>
+@section('content')
     <article>
         @if (session('post-published'))
             <div class="alert alert-success">
@@ -31,5 +21,4 @@ dd($post);
         </div>
         <p>{{$post->paragraph}}</p>
     </article>
-</body>
-</html>
+@endsection

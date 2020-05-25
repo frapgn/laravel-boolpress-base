@@ -1,12 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Create article</title>
-    <link rel="stylesheet" href="{{asset('css/app.css')}}">
-</head>
-<body>
+@extends('layouts.app')
+
+@section('content')
     <form class="create-post" action="{{route('admin.posts.store')}}" method="POST">
         @csrf
         @method('POST')
@@ -59,6 +53,4 @@
         @enderror
         <input type="submit" value="Submit" class="btn btn-primary float-right">
     </form>
-
-</body>
-</html>
+@endsection

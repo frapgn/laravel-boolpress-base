@@ -60,6 +60,7 @@
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item" href="{{route('admin.home')}}">Admin Home</a>
                                     <a class="dropdown-item" href="{{route('admin.posts.index')}}">Manage Posts</a>
 
                                     <a class="dropdown-item" href="{{ route('logout') }}"
