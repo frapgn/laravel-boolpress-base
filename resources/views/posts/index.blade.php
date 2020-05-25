@@ -1,12 +1,9 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>laravel-boolpress-base</title>
-    <link rel="stylesheet" href="{{asset('css/app.css')}}">
-</head>
-<body>
+@extends('layouts.layout')
+@section('title')
+    Posts
+@endsection
+
+@section('main')
     <div class="container">
         <h1>Laravel Boolpress Base</h1>
         <div class="posts-container">
@@ -27,5 +24,4 @@
             @endforeach
         </div>
     </div>
-</body>
-</html>
+@endsection
