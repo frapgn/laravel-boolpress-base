@@ -10978,11 +10978,13 @@ body {
   padding: 30px;
 }
 
-body .create-post label {
+body .create-post label,
+body .create-user label {
   font-weight: bold;
 }
 
-body .create-post .form-control {
+body .create-post .form-control,
+body .create-user .form-control {
   background-color: grey;
   color: #f5f5f5;
 }

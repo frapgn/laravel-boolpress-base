@@ -7,6 +7,7 @@
                 <th>ID</th>
                 <th>Name</th>
                 <th>Email</th>
+                <th colspan="3"></th>
             </tr>
         </thead>
         <tbody>
@@ -15,6 +16,9 @@
                     <td>{{$user->id}}</td>
                     <td>{{$user->name}}</td>
                     <td>{{$user->email}}</td>
+                    <td><a href="#">View</a></td>
+                    <td><a href="#">Edit</a></td>
+                    <td>Delete</td>
                 </tr>
             @endforeach
         </tbody>
