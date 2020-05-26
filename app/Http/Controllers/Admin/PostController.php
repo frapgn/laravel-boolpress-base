@@ -9,7 +9,7 @@ use Illuminate\Support\Str;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Validator;
 
-class AdminPostController extends Controller
+class PostController extends Controller
 {
     /**
      * Display a listing of the resource.
